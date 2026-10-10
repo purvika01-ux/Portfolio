@@ -14,27 +14,27 @@ const heroStack = [
 
 // Small syntax-highlighted snippet shown on the floating code card
 const CodeCard = () => (
-  <div className="w-[250px] sm:w-[300px] rounded-2xl border border-white/10 bg-[#0b0e22]/90 backdrop-blur-xl shadow-[0_24px_60px_-20px_rgba(0,0,0,0.8)] overflow-hidden">
-    <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/6">
-      <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-      <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-      <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-      <span className="ml-2 font-mono text-[0.68rem] text-text-muted">purvika.js</span>
+  <div className="w-[220px] xs:w-[245px] sm:w-[300px] rounded-xl sm:rounded-2xl border border-white/10 bg-[#0b0e22]/90 backdrop-blur-xl shadow-[0_20px_50px_-15px_rgba(0,0,0,0.8)] overflow-hidden">
+    <div className="flex items-center gap-1.5 px-3 py-2 sm:px-4 sm:py-2.5 border-b border-white/6">
+      <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#ff5f57]" />
+      <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#febc2e]" />
+      <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#28c840]" />
+      <span className="ml-1.5 sm:ml-2 font-mono text-[0.62rem] sm:text-[0.68rem] text-text-muted">purvika.js</span>
     </div>
-    <pre className="px-4 py-3.5 font-mono text-[0.72rem] leading-[1.75] text-text-secondary overflow-hidden">
+    <pre className="px-3.5 py-2.5 sm:px-4 sm:py-3.5 font-mono text-[0.65rem] sm:text-[0.72rem] leading-[1.65] sm:leading-[1.75] text-text-secondary overflow-hidden">
       <span className="text-[#c792ea]">const</span> <span className="text-[#82aaff]">purvika</span> = {'{'}
       {'\n'}  role: <span className="text-[#c3e88d]">'Frontend Dev'</span>,
       {'\n'}  stack: [<span className="text-[#c3e88d]">'React'</span>, <span className="text-[#c3e88d]">'Java'</span>],
       {'\n'}  cgpa: <span className="text-[#f78c6c]">8.76</span>,
       {'\n'}  openToWork: <span className="text-[#ff9cac]">true</span>
-      {'\n'}{'}'}<span className="caret inline-block w-[7px] h-[13px] bg-accent-soft/80 align-middle ml-0.5" />
+      {'\n'}{'}'}<span className="caret inline-block w-[6px] sm:w-[7px] h-[11px] sm:h-[13px] bg-accent-soft/80 align-middle ml-0.5" />
     </pre>
   </div>
 )
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-[100svh] flex items-center pt-[110px] pb-12 lg:pt-[96px] overflow-hidden">
+    <section id="home" className="relative min-h-[100svh] flex items-center pt-[100px] pb-6 sm:pb-12 lg:pt-[96px] overflow-hidden">
       <div className="grid-pattern absolute inset-0 pointer-events-none" aria-hidden="true" />
 
       <div className="relative w-full max-w-[1200px] mx-auto px-5 sm:px-8 grid lg:grid-cols-[1.1fr_0.9fr] gap-14 lg:gap-8 items-center">
@@ -85,7 +85,7 @@ const Hero = () => {
         </div>
 
         {/* Visual */}
-        <div className="reveal relative mx-auto w-full max-w-110 mb-24 sm:mb-0" style={{ '--reveal-delay': '150ms' }}>
+        <div className="reveal relative mx-auto w-full max-w-[340px] sm:max-w-110 mb-8 sm:mb-0" style={{ '--reveal-delay': '150ms' }}>
           {/* Orbit ring + glow */}
           <div className="absolute -inset-[10%] rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.38)_0%,rgba(79,70,229,0.18)_40%,transparent_68%)]" aria-hidden="true" />
           <div className="absolute -inset-2 rounded-full border border-dashed border-accent-soft/20 animate-spin-slow" aria-hidden="true" />
@@ -105,16 +105,16 @@ const Hero = () => {
           </div>
 
           {/* Floating cards */}
-          <div className="floating absolute -left-6 sm:-left-20 lg:-left-22 bottom-[-25%] sm:-bottom-7">
+          <div className="floating absolute -left-2 xs:-left-4 sm:-left-20 lg:-left-22 -bottom-7 sm:-bottom-7 z-10">
             <CodeCard />
           </div>
-          <div className="floating-delayed absolute -right-2 sm:-right-12 lg:-right-16 top-[52%] sm:top-[16%] rounded-2xl border border-border-glass bg-bg-elevated/90 backdrop-blur-xl px-4 py-3 flex items-center gap-3 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.8)]">
-            <span className="w-9 h-9 rounded-xl bg-accent-violet/15 text-accent-soft flex items-center justify-center">
-              <Icon name="graduation" size={18} />
+          <div className="floating-delayed absolute -right-2 xs:-right-4 sm:-right-12 lg:-right-16 top-[22%] sm:top-[16%] rounded-xl sm:rounded-2xl border border-border-glass bg-bg-elevated/90 backdrop-blur-xl px-2.5 py-1.5 sm:px-4 sm:py-3 flex items-center gap-2 sm:gap-3 shadow-[0_12px_30px_-12px_rgba(0,0,0,0.8)] z-10">
+            <span className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-accent-violet/15 text-accent-soft flex items-center justify-center shrink-0">
+              <Icon name="graduation" size={15} />
             </span>
             <span className="leading-tight">
-              <span className="block font-heading text-[1.05rem] font-semibold text-text-primary">8.76 CGPA</span>
-              <span className="block text-[0.72rem] text-text-muted">B.Tech CSE · GNDEC</span>
+              <span className="block font-heading text-[0.84rem] sm:text-[1.05rem] font-bold text-text-primary">8.76 CGPA</span>
+              <span className="block text-[0.6rem] sm:text-[0.72rem] text-text-muted">B.Tech CSE<span className="hidden xs:inline"> · GNDEC</span></span>
             </span>
           </div>
         </div>

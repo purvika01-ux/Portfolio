@@ -7,7 +7,7 @@ const focusIcons = ['layers', 'code', 'puzzle']
 
 const About = () => {
   return (
-    <section id="about" className="relative py-14 md:py-16">
+    <section id="about" className="relative pt-8 pb-12 sm:pt-14 sm:pb-16">
       <div className="max-w-[1200px] mx-auto px-5 sm:px-8">
         <SectionHeading index="01" eyebrow="About me" title="Curious builder," highlight="detail-driven developer" />
 

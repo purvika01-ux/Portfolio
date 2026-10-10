@@ -24,7 +24,6 @@ const Skills = () => {
             >
               <header className="flex items-baseline justify-between gap-3 mb-5">
                 <h3 className="font-heading text-[1.1rem] font-semibold text-text-primary">{group.title}</h3>
-                <span className="font-mono text-[0.65rem] text-text-muted">0{i + 1}</span>
               </header>
               <ul className="space-y-2.5 flex-1">
                 {group.items.map((item) => (

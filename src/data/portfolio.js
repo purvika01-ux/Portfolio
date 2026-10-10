@@ -8,7 +8,7 @@ export const profile = {
   intro:
     'B.Tech Computer Science student at GNDEC, Ludhiana, with a strong foundation in Java, DSA, JavaScript and React — turning ideas into clean, intuitive interfaces.',
   status: 'Open to internships & SDE opportunities',
-  location: 'Ludhiana, Punjab',
+  location: 'Agra, Uttar Pradesh',
   email: 'jainpurvika35@gmail.com',
   phone: '+91 95575 08649',
   phoneHref: 'tel:+919557508649',
