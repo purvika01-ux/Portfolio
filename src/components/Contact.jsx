@@ -14,22 +14,89 @@ const inputClass =
   'w-full rounded-xl border border-border-glass bg-white/[0.03] px-4 py-3 text-[0.95rem] text-white placeholder:text-text-muted outline-none transition-colors focus:border-accent-violet/70 focus:bg-white/[0.05]'
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
-  const [opened, setOpened] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState('');
+  const [statusType, setStatusType] = useState('');
+
 
   const handleChange = (e) => {
     const { name, value } = e.target
+
     setFormData((prev) => ({ ...prev, [name]: value }))
+
+    // Clear the previous success or error message
+    setStatus('')
+    setStatusType('')
   }
 
   // No backend: compose the message in the visitor's email client instead of faking a send
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const subject = `Portfolio enquiry from ${formData.name}`
-    const body = `${formData.message}\n\n— ${formData.name} (${formData.email})`
-    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-    setOpened(true)
-  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (sending) return;
+
+    setSending(true);
+    setStatus('');
+    setStatusType('');
+
+    const form = event.currentTarget;
+    const payload = new FormData(form);
+
+    payload.append(
+      'access_key',
+      import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
+    );
+
+    payload.append(
+      'subject',
+      'New message from my portfolio website'
+    );
+
+    try {
+      const response = await fetch(
+        'https://api.web3forms.com/submit',
+        {
+          method: 'POST',
+          body: payload,
+          headers: {
+            Accept: 'application/json',
+          },
+        }
+      );
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setStatusType('success');
+        setStatus('Message sent successfully! Thank you for reaching out.');
+
+        setFormData({
+          name: '',
+          email: '',
+          message: '',
+        });
+
+        form.reset();
+      } else {
+        setStatusType('error');
+        setStatus(
+          result.message || 'Unable to send your message. Please try again.'
+        );
+      }
+    } catch {
+      setStatusType('error');
+      setStatus('Network error. Please check your connection and try again.');
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <section id="contact" className="relative py-14 md:py-16">
@@ -84,14 +151,37 @@ const Contact = () => {
                 <span className="block mb-2 text-[0.82rem] text-text-secondary">Message</span>
                 <textarea name="message" rows="5" required value={formData.message} onChange={handleChange} className={`${inputClass} resize-none`} placeholder="Tell me about the role or project…" />
               </label>
-              <button type="submit" className="btn-primary self-start">
-                Send message
-                <Icon name="send" size={16} />
+              <button
+                type="submit"
+                disabled={sending}
+                className="btn-primary self-start disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {sending ? 'Sending...' : 'Send message'}
+                {!sending && <Icon name="send" size={16} />}
               </button>
-              <p className="text-[0.78rem] text-text-muted" aria-live="polite">
-                {opened
-                  ? `Your email app should now be open with the message ready to send. If not, write to ${profile.email}.`
-                  : 'Opens your email app with the message pre-filled.'}
+              <p
+                className="text-[0.78rem] text-text-muted"
+                aria-live="polite"
+                role="status"
+              >
+
+                {status && (
+                  <div
+                    role="status"
+                    aria-live="polite"
+                    className={`flex items-center gap-2 rounded-xl border px-4 py-3 text-sm transition-colors ${statusType === 'success'
+                      ? 'border-green-500/30 bg-green-500/10 text-green-6j00 dark:text-green-400'
+                      : 'border-red-500/30 bg-red-500/10 text-red-600 dark:text-red-400'
+                      }`}
+                  >
+                    <Icon
+                      name={statusType === 'success' ? 'check-circle' : 'alert-circle'}
+                      size={18}
+                    />
+                    <span>{status}</span>
+                  </div>
+                )}
+
               </p>
             </form>
           </div>
