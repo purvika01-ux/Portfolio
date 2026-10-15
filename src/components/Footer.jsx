@@ -5,7 +5,7 @@ import { Icon } from './Icons'
 const socials = [
   { icon: 'github', label: 'GitHub', href: profile.github },
   { icon: 'linkedin', label: 'LinkedIn', href: profile.linkedin },
-  { icon: 'mail', label: 'Email', href: `mailto:${profile.email}` },
+  { icon: 'mail', label: 'Email', href: `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`, external: true },
 ]
 
 const Footer = () => {

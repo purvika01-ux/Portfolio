@@ -4,7 +4,7 @@ import SectionHeading from './SectionHeading'
 import { Icon } from './Icons'
 
 const channels = [
-  { icon: 'mail', label: 'Email', value: profile.email, href: `mailto:${profile.email}` },
+  { icon: 'mail', label: 'Email', value: profile.email, href: `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`, external: true },
   { icon: 'phone', label: 'Phone', value: profile.phone, href: profile.phoneHref },
   { icon: 'linkedin', label: 'LinkedIn', value: 'purvika-jain', href: profile.linkedin, external: true },
   { icon: 'github', label: 'GitHub', value: profile.githubHandle, href: profile.github, external: true },
